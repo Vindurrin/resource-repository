@@ -1,0 +1,28 @@
+<div *ngIf="resource">
+  <div>
+      <label>Role: </label> {{resource.role}}
+  </div>
+  <div>
+      <label>Start Date: </label> {{resource.start}}
+  </div>
+  <div>
+      <label>End Date: </label> {{resource.end}}
+  </div>
+  <div>
+      <label>Sudo Role: </label> {{resource.sudorole}}
+  </div>
+  <div>
+    <label>Project: </label> {{resource.project}}
+  </div>
+  <div>
+    <label>Status: </label> {{resource.status}}
+  </div>
+
+  <span class="button is-small btn-primary" *ngIf='resource.active' (click)='updateActive(false)'>Inactive</span>
+
+  <span class="button is-small btn-primary" *ngIf='!resource.active' (click)='updateActive(true)'>Active</span>
+
+  <span class="button is-small btn-danger" (click)='deleteResource()'>Delete</span>
+
+  <hr/>
+</div>

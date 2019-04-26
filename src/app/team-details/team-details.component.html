@@ -1,0 +1,31 @@
+<div *ngIf="team">
+    <div>
+        <label>ID: </label> {{team.id}}
+    </div>
+    <div>
+        <label>Name: </label> {{team.name}}
+    </div>
+    <div>
+        <label>Resources: </label> {{team.resources}}
+    </div>
+    <div>
+        <label>Status: </label> {{team.status}}
+    </div>
+    <div>
+      <label>Start Date: </label> {{team.start}}
+    </div>
+    <div>
+      <label>End Date: </label> {{team.end}}
+    </div>
+    <div>
+      <label>Project: </label> {{ team.project }}
+    </div>
+  
+    <span class="button is-small btn-primary" *ngIf='resource.active' (click)='updateActive(false)'>Inactive</span>
+  
+    <span class="button is-small btn-primary" *ngIf='!resource.active' (click)='updateActive(true)'>Active</span>
+  
+    <span class="button is-small btn-danger" (click)='deleteResource()'>Delete</span>
+  
+    <hr/>
+  </div>
