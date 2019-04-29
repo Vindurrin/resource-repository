@@ -1,5 +1,6 @@
 package net.guides.springboot2.springboot2jpacrudexample.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,12 +33,18 @@ public class ResourceController {
         return resourceRepository.findAll();
     }
 
-    @GetMapping("/resources/{id}")
-    public ResponseEntity<Resource> getResourceById(@PathVariable(value = "id") Long resourceId)
+    @GetMapping("/resources/{role}")
+    public List<Resource> getResourceByRole(@PathVariable(value = "role") String role)
         throws ResourceNotFoundException {
-        Resource resource = resourceRepository.findById(resourceId)
-          .orElseThrow(() -> new ResourceNotFoundException("Resource not found for this id :: " + resourceId));
-        return ResponseEntity.ok().body(resource);
+    	System.out.println("search is being called " + role);
+    	List<Resource> allResources = resourceRepository.findAll();
+    	List<Resource> results = new ArrayList<Resource>();
+    	for(Resource resource : allResources) {
+    		if(resource.getRole().equals(role)) {
+    			results.add(resource);
+    		}
+    	}
+        return results;
     }
     
     @PostMapping("/resources")
@@ -45,13 +52,18 @@ public class ResourceController {
         return resourceRepository.save(resource);
     }
 
-    @PutMapping("/resources/{id}")
+    @PutMapping("/resources/edit/{id}")
     public ResponseEntity<Resource> updateResource(@PathVariable(value = "id") Long resourceId,
          @Valid @RequestBody Resource resourceDetails) throws ResourceNotFoundException {
         Resource resource = resourceRepository.findById(resourceId)
-        .orElseThrow(() -> new ResourceNotFoundException("Resource not found for this id :: " + resourceId));
+        .orElseThrow(() -> new ResourceNotFoundException("Resource not found for this id: " + resourceId));
 
-        //resource.setRole(resourceDetails.getRole());
+        resource.setRole(resourceDetails.getRole());
+        resource.setStart(resourceDetails.getStart());
+        resource.setEnd(resourceDetails.getEnd());
+        resource.setSudorole(resourceDetails.getSudorole());
+        resource.setProject(resourceDetails.getProject());
+        resource.setStatus(resourceDetails.getStatus());
 
         
         final Resource updatedResource = resourceRepository.save(resource);
@@ -62,7 +74,7 @@ public class ResourceController {
     public Map<String, Boolean> deleteResource(@PathVariable(value = "id") Long resourceId)
          throws ResourceNotFoundException {
         Resource resource = resourceRepository.findById(resourceId)
-       .orElseThrow(() -> new ResourceNotFoundException("Resource not found for this id :: " + resourceId));
+       .orElseThrow(() -> new ResourceNotFoundException("Resource not found for this id: " + resourceId));
 
         resourceRepository.delete(resource);
         Map<String, Boolean> response = new HashMap<>();
