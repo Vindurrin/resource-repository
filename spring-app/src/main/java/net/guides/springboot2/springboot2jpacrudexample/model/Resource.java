@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "resources")
@@ -16,11 +18,27 @@ public class Resource {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+	
+	@NotNull
+	@Size(min=2, max=64, message="role should be between 2 and 64 characters")
 	private String role;
+	
+	@NotNull
 	private Date start;
+	
+	@NotNull
 	private Date end;
+	
+	@NotNull
+	@Size(min=2, max=64, message="suderole should be between 2 and 64 characters")
 	private String sudorole;
+	
+	@NotNull
+	@Size(min=2, max=64, message="project should be between 2 and 64 characters")
 	private String project;
+	
+	@NotNull
+	@Size(min=2, max=64, message="status should be between 2 and 64 characters")
 	private String status;
  
     public Resource() {
