@@ -32,28 +32,32 @@ public class TeamController {
         return teamRepository.findAll();
     }
 
-    @GetMapping("/teams/{id}")
-    public ResponseEntity<Team> getTeamById(@PathVariable(value = "id") Long teamId)
-        throws TeamNotFoundException {
-        Team team = teamRepository.findById(teamId)
-          .orElseThrow(() -> new TeamNotFoundException("Team not found for this id :: " + teamId));
-        return ResponseEntity.ok().body(team);
-    }
+//    @GetMapping("/teams/{id}")
+//    public ResponseEntity<Team> getTeamById(@PathVariable(value = "id") Long teamId)
+//        throws TeamNotFoundException {
+//        Team team = teamRepository.findById(teamId)
+//          .orElseThrow(() -> new TeamNotFoundException("Team not found for this id :: " + teamId));
+//        return ResponseEntity.ok().body(team);
+//    }
     
     @PostMapping("/teams")
     public Team createTeam(@Valid @RequestBody Team team) {
-    	System.out.println("Start date: " + team.getStart());
+    	//System.out.println("Start date: " + team.getStart());
         return teamRepository.save(team);
     }
 
-    @PutMapping("/teams/{id}")
+    @PutMapping("/teams/edit/{id}")
     public ResponseEntity<Team> updateTeam(@PathVariable(value = "id") Long teamId,
          @Valid @RequestBody Team teamDetails) throws TeamNotFoundException {
         Team team = teamRepository.findById(teamId)
         .orElseThrow(() -> new TeamNotFoundException("Team not found for this id :: " + teamId));
-
-        //team.setRole(teamDetails.getRole());
-
+        
+        team.setName(teamDetails.getName());
+        team.setResource(teamDetails.getResource());
+        team.setStatus(teamDetails.getStatus());
+        team.setStart(teamDetails.getStart());
+        team.setEnd(teamDetails.getEnd());
+        team.setProject(teamDetails.getProject());
         
         final Team updatedTeam = teamRepository.save(team);
         return ResponseEntity.ok(updatedTeam);

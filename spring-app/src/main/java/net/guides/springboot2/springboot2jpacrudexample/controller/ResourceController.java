@@ -36,7 +36,7 @@ public class ResourceController {
     @GetMapping("/resources/{role}")
     public List<Resource> getResourceByRole(@PathVariable(value = "role") String role)
         throws ResourceNotFoundException {
-    	System.out.println("search is being called " + role);
+    	//System.out.println("search is being called " + role);
     	List<Resource> allResources = resourceRepository.findAll();
     	List<Resource> results = new ArrayList<Resource>();
     	for(Resource resource : allResources) {

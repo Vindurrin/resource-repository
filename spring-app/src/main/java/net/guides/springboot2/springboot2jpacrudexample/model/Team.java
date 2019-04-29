@@ -23,8 +23,7 @@ public class Team {
 	private String name;
 	
 	@NotNull
-	@OneToMany
-	private List<Resource> resource;
+	private String resource;
 	
 	@NotNull
 	private String status;
@@ -42,7 +41,8 @@ public class Team {
 		
 	}
 
-	public Team(long id, String name, List<Resource> resource, String status, Date start, Date end, String project) {
+	public Team(long id, @NotNull String name, @NotNull String resource, @NotNull String status, @NotNull Date start,
+			@NotNull Date end, @NotNull String project) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -69,11 +69,11 @@ public class Team {
 		this.name = name;
 	}
 
-	public List<Resource> getResource() {
+	public String getResource() {
 		return resource;
 	}
 
-	public void setResource(List<Resource> resource) {
+	public void setResource(String resource) {
 		this.resource = resource;
 	}
 
