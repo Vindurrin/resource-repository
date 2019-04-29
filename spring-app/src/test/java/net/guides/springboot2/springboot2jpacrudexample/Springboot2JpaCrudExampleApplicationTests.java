@@ -1,16 +1,30 @@
 package net.guides.springboot2.springboot2jpacrudexample;
 
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import net.guides.springboot2.springboot2jpacrudexample.controller.ResourceController;
+import net.guides.springboot2.springboot2jpacrudexample.controller.TeamController;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class Springboot2JpaCrudExampleApplicationTests {
 
+	@Autowired
+	private ResourceController resourceController;
+
+	@Autowired
+	private TeamController teamController;
+
 	@Test
-	public void contextLoads() {
+	public void contextLoads() throws Exception {
+		assertNotNull(resourceController);
+		assertNotNull(teamController);
 	}
 
 }
