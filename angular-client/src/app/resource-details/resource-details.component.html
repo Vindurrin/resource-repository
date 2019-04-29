@@ -1,28 +1,38 @@
-<div *ngIf="resource">
-  <div>
-      <label>Role: </label> {{resource.role}}
-  </div>
-  <div>
-      <label>Start Date: </label> {{resource.start}}
-  </div>
-  <div>
-      <label>End Date: </label> {{resource.end}}
-  </div>
-  <div>
-      <label>Sudo Role: </label> {{resource.sudorole}}
-  </div>
-  <div>
-    <label>Project: </label> {{resource.project}}
-  </div>
-  <div>
-    <label>Status: </label> {{resource.status}}
-  </div>
-
-  <span class="button is-small btn-primary" *ngIf='resource.active' (click)='updateActive(false)'>Inactive</span>
-
-  <span class="button is-small btn-primary" *ngIf='!resource.active' (click)='updateActive(true)'>Active</span>
-
-  <span class="button is-small btn-danger" (click)='deleteResource()'>Delete</span>
-
-  <hr/>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1>Resources</h1>
+    </div>
+    
+    <div class="panel-body">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Role</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Sudo Role</th>
+                    <th>Project</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <tr *ngFor="let resource of resources | async">
+                    <td>{{resource.id}}</td>
+                    <td>{{resource.role}}</td>
+                    <td>{{resource.start | date:'MM/dd/yyyy'}}</td>
+                    <td>{{resource.end | date:'MM/dd/yyyy'}}</td>
+                    <td>{{resource.sudorole}}</td>
+                    <td>{{resource.project}}</td>
+                    <td>{{resource.status}}</td>
+                    <td>
+                        <a [routerLink]="['edit', resource.id]" class="btn btn-primary">Update</a>&nbsp;&nbsp;
+                        <a (click)="deleteResource(resource.id)" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

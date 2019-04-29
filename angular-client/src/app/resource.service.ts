@@ -11,8 +11,9 @@ export class ResourceService {
 
   constructor(private http: HttpClient) { }
 
-  getResource(id: number): Observable<Object> {
-    return this.http.get(`${this.baseUrl}/${id}`);
+  getResource(role: string): Observable<any> {
+    console.log("getResource(): " + role);
+    return this.http.get(`${this.baseUrl}/${role}`);
   }
 
   createResource(resource: Object): Observable<Object> {

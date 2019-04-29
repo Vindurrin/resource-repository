@@ -13,7 +13,7 @@ export class UpdateResourceComponent implements OnInit {
   resource: any = {};
   submitted = false;
 
-  constructor(private route: ActivatedRoute, private router: Router, private resourceService: ResourceService) { }
+  constructor(private resourceService: ResourceService) { }
 
   ngOnInit() {
 
