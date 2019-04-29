@@ -1,33 +1,40 @@
-<h3>Create Team</h3>>
+<h3>Create Team</h3>
 <div [hidden]="submitted" style="width: 400px;">
-  <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="ID">ID</label>
-      <input type="text" name="ID" id="ID" class="form-control" required [(ngModel)]="team.id">
-    </div>
-    <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" class="form-control" required [(ngModel)]="team.name">
-    </div>
-    <div class="form-group">
-        <label for="resources">Resources</label>
-        <input type="text" name="resources" id="resources" class="form-control" required [(ngModel)]="team.resources">
-    </div>
-    <div class="form-group">
-        <label for="status">Status</label>
-        <input type="text" name="status" id="status" class="form-control" required [(ngModel)]="team.status">
-    </div>
-    <div class="form-group">
-        <label for="startDate">Start Date</label>
-        <input type="date" name="startDate" id="startDate" class="form-control" required [(ngModel)]="team.startDate">
-    </div>
-    <div class="form-group">
-        <label for="endDate">End Date</label>
-        <input type="text" name="endDate" id="endDate" class="form-control" required [(ngModel)]="team.endDate">
-    </div>
-    <div class="form-group">
-        <label for="projects">Projects</label>
-        <input type="text" name="projects" id="projects" class="form-control" required [(ngModel)]="team.projects">
-    </div>
-  </form>
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">name</label>
+            <input type="text" class="form-control" id="name" required [(ngModel)]="team.name" name="name">
+        </div>
+
+        <div class="form-group">
+            <label for="name">resource</label>
+            <input type="text" class="form-control" id="resource" required [(ngModel)]="team.resource" name="resource">
+        </div>
+
+        <div class="form-group">
+            <label for="name">status</label>
+            <input type="text" class="form-control" id="status" required [(ngModel)]="team.status" name="status">
+        </div>
+
+        <div class="form-group">
+            <label for="name">start</label>
+            <input type="date" class="form-control" id="start" required [(ngModel)]="team.start" name="start">
+        </div>
+
+        <div class="form-group">
+            <label for="name">end</label>
+            <input type="date" class="form-control" id="end" required [(ngModel)]="team.end" name="end">
+        </div>
+
+        <div class="form-group">
+            <label for="name">projects</label>
+            <input type="text" class="form-control" id="project" required [(ngModel)]="team.project" name="project">
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+
+<div [hidden]="!submitted">
+    <h4>You submitted successfully!</h4>
 </div>

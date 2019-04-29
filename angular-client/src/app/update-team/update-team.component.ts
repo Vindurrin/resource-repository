@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { TeamService } from '../team.service';
-import { Team } from '../team';
+import { Team } from './../team';
+import { TeamService } from './../team.service';
 
 @Component({
   selector: 'app-update-team',
@@ -13,19 +12,19 @@ export class UpdateTeamComponent implements OnInit {
   team: any = {};
   submitted = false;
 
-  constructor(private route: ActivatedRoute, private router: Router, private teamService: TeamService) { }
+  constructor(private teamService: TeamService) { }
 
   ngOnInit() {
+
   }
 
-  update()
-  {
-    this.teamService.updateTeam(this.team.id, this.team).subscribe(data => console.log(data), error => 
-    console.log(error));
+  update(){
+    this.teamService.updateTeam(this.team.id, this.team)
+      .subscribe(data => console.log(data), error => console.log(error));
     this.team = new Team();
   }
 
-  onSubmit(){
+  onSubmit(){   
     this.submitted = true;
     this.update();
   }

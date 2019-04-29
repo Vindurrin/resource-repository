@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
 import { Team } from '../team';
-import { TeamService } from '../team.service';
-import { TeamListComponent } from '../team-list/team-list.component';
+import { Component, OnInit, Input } from '@angular/core';
+import { TeamService } from "../team.service";
+import { Observable } from "rxjs";
 
 @Component({
   selector: 'app-team-details',
@@ -10,11 +10,11 @@ import { TeamListComponent } from '../team-list/team-list.component';
 })
 export class TeamDetailsComponent implements OnInit {
 
-  @Input() team: Team;
+  teams: Observable<Team[]>;
 
-  constructor(private teamService: TeamService, private listComponent: TeamListComponent) { }
+  constructor() { }
 
   ngOnInit() {
-  }
 
+  }
 }

@@ -15,7 +15,7 @@ export class ResourceDetailsComponent implements OnInit {
   constructor(private resourceService: ResourceService) { }
 
   ngOnInit() {
-    let role = window.localStorage.getItem('role');
+    let role = window.localStorage.getItem('r_role');
     this.resources = this.resourceService.getResource(role);
   }
 }

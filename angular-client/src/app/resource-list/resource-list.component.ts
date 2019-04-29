@@ -3,7 +3,6 @@ import { ResourceService } from "../resource.service";
 import { Resource } from "../resource";
 import { Component, OnInit } from "@angular/core";
 import { Router } from '@angular/router';
-import { ResourceDetailsComponent } from './../resource-details/resource-details.component';
 
 @Component({
   selector: "app-resource-list",
@@ -35,9 +34,7 @@ export class ResourceListComponent implements OnInit {
   }
 
   search(){
-    console.log("searching");
-    console.log("role: " + this.resourceRole);
-    window.localStorage.setItem('role', this.resourceRole);
+    window.localStorage.setItem('r_role', this.resourceRole);
     this.resourceService.getResource(this.resourceRole)
       .subscribe(
         data => {

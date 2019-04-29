@@ -1,12 +1,9 @@
-import { Resource } from './resource';
-
-export class Team
-{
+export class Team {
     id: number;
     name: string;
-    resources: Array<Resource>;
+    resource: string;
     status: string;
     start: string;
     end: string;
-    project: Array<string>;
+    projects: string;
 }

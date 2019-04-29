@@ -11,8 +11,9 @@ export class TeamService {
 
   constructor(private http: HttpClient) { }
 
-  getTeam(id: number): Observable<Object> {
-    return this.http.get(`${this.baseUrl}/${id}`);
+  getTeam(role: string): Observable<any> {
+    console.log("getTeam(): " + role);
+    return this.http.get(`${this.baseUrl}/${role}`);
   }
 
   createTeam(team: Object): Observable<Object> {
@@ -24,12 +25,11 @@ export class TeamService {
   }
 
   deleteTeam(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text'});
+    return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
   }
 
-  getTeamsList(): Observable<any>
-  {
+  getTeamsList(): Observable<any> {
     return this.http.get(`${this.baseUrl}`);
   }
-  
+
 }

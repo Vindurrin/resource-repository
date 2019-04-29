@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Team } from '../team';
-import { Router } from '@angular/router';
-import { TeamService } from '../team.service';
+import { Observable } from "rxjs";
+import { TeamService } from "../team.service";
+import { Team } from "../team";
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-team-list',
-  templateUrl: './team-list.component.html',
-  styleUrls: ['./team-list.component.css']
+  selector: "app-team-list",
+  templateUrl: "./team-list.component.html",
+  styleUrls: ["./team-list.component.css"]
 })
 export class TeamListComponent implements OnInit {
   teams: Observable<Team[]>;
+  teamRole: string;
 
-  constructor(private router: Router, private teamService: TeamService) { }
+  constructor(private teamService: TeamService) {}
 
   ngOnInit() {
     this.reloadData();
@@ -23,12 +23,14 @@ export class TeamListComponent implements OnInit {
   }
 
   deleteTeam(id: number) {
-    this.teamService.deleteTeam(id).subscribe(
-      data => {
-        console.log(data);
-        this.reloadData();
-      },
-      error => console.log(error));
+    this.teamService.deleteTeam(id)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.reloadData();
+        },
+        error => console.log(error));
   }
+
 
 }

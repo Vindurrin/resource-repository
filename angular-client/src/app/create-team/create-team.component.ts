@@ -1,6 +1,6 @@
+import { TeamService } from './../team.service';
+import { Team } from './../team';
 import { Component, OnInit } from '@angular/core';
-import { Team } from '../team';
-import { TeamService } from '../team.service';
 
 @Component({
   selector: 'app-create-team',
@@ -16,23 +16,20 @@ export class CreateTeamComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
   newTeam(): void {
     this.submitted = false;
     this.team = new Team();
   }
 
   save() {
-    this.teamService.createTeam(this.team).subscribe(
-      data => console.log(data), error =>
-      console.log(error));
-      this.team = new Team();
+    this.teamService.createTeam(this.team)
+      .subscribe(data => console.log(data), error => console.log(error));
+    this.team = new Team();
   }
 
-  onSubmit()
-  {
+  onSubmit() {
     this.submitted = true;
     this.save();
   }
-
 }
