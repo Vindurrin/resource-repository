@@ -3,10 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { CreateResourceComponent } from './create-resource/create-resource.component';
 import { UpdateResourceComponent } from './update-resource/update-resource.component';
 import { ResourceListComponent } from './resource-list/resource-list.component';
+import { ResourceDetailsComponent } from './resource-details/resource-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'resource', pathMatch: 'full' },
   { path: 'resources', component: ResourceListComponent },
+  { path: 'resources/:role', component: ResourceDetailsComponent },
   { path: 'add', component: CreateResourceComponent },
   { path: 'resources/edit/:id', component: UpdateResourceComponent},
 ];

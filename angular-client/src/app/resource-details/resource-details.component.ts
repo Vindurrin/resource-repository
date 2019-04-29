@@ -1,7 +1,7 @@
 import { Resource } from '../resource';
 import { Component, OnInit, Input } from '@angular/core';
-import { ResourceService } from '../resource.service';
-import { ResourceListComponent } from '../resource-list/resource-list.component';
+import { ResourceService } from "../resource.service";
+import { Observable } from "rxjs";
 
 @Component({
   selector: 'app-resource-details',
@@ -10,10 +10,12 @@ import { ResourceListComponent } from '../resource-list/resource-list.component'
 })
 export class ResourceDetailsComponent implements OnInit {
 
-  @Input() resource: Resource;
+  resources: Observable<Resource[]>;
 
-  constructor(private resourceService: ResourceService, private listComponent: ResourceListComponent) { }
+  constructor(private resourceService: ResourceService) { }
 
   ngOnInit() {
+    let role = window.localStorage.getItem('role');
+    this.resources = this.resourceService.getResource(role);
   }
 }
