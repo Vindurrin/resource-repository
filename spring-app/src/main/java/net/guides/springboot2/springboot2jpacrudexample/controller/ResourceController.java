@@ -40,7 +40,7 @@ public class ResourceController {
     	List<Resource> allResources = resourceRepository.findAll();
     	List<Resource> results = new ArrayList<Resource>();
     	for(Resource resource : allResources) {
-    		if(resource.getRole().equals(role)) {
+    		if(resource.getRole().contains(role) || resource.getProject().contains(role)) {
     			results.add(resource);
     		}
     	}

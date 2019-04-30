@@ -1,13 +1,11 @@
 package net.guides.springboot2.springboot2jpacrudexample.model;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -23,7 +21,7 @@ public class Team {
 	private String name;
 	
 	@NotNull
-	private String resource;
+	private String resources;
 	
 	@NotNull
 	private String status;
@@ -41,12 +39,12 @@ public class Team {
 		
 	}
 
-	public Team(long id, @NotNull String name, @NotNull String resource, @NotNull String status, @NotNull Date start,
+	public Team(long id, @NotNull String name, @NotNull String resources, @NotNull String status, @NotNull Date start,
 			@NotNull Date end, @NotNull String project) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.resource = resource;
+		this.resources = resources;
 		this.status = status;
 		this.start = start;
 		this.end = end;
@@ -69,12 +67,12 @@ public class Team {
 		this.name = name;
 	}
 
-	public String getResource() {
-		return resource;
+	public String getResources() {
+		return resources;
 	}
 
-	public void setResource(String resource) {
-		this.resource = resource;
+	public void setResources(String resources) {
+		this.resources = resources;
 	}
 
 	public String getStatus() {
@@ -111,7 +109,7 @@ public class Team {
 
 	@Override
 	public String toString() {
-		return "Team [id=" + id + ", name=" + name + ", resource=" + resource + ", status=" + status + ", start="
+		return "Team [id=" + id + ", name=" + name + ", resources=" + resources + ", status=" + status + ", start="
 				+ start + ", end=" + end + ", project=" + project + "]";
 	}
 

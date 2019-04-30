@@ -31,14 +31,6 @@ public class TeamController {
     public List<Team> getAllTeams() {
         return teamRepository.findAll();
     }
-
-//    @GetMapping("/teams/{id}")
-//    public ResponseEntity<Team> getTeamById(@PathVariable(value = "id") Long teamId)
-//        throws TeamNotFoundException {
-//        Team team = teamRepository.findById(teamId)
-//          .orElseThrow(() -> new TeamNotFoundException("Team not found for this id :: " + teamId));
-//        return ResponseEntity.ok().body(team);
-//    }
     
     @PostMapping("/teams")
     public Team createTeam(@Valid @RequestBody Team team) {
@@ -53,7 +45,7 @@ public class TeamController {
         .orElseThrow(() -> new TeamNotFoundException("Team not found for this id :: " + teamId));
         
         team.setName(teamDetails.getName());
-        team.setResource(teamDetails.getResource());
+        team.setResources(teamDetails.getResources());
         team.setStatus(teamDetails.getStatus());
         team.setStart(teamDetails.getStart());
         team.setEnd(teamDetails.getEnd());
