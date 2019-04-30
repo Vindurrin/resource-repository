@@ -1,6 +1,8 @@
 import { TeamService } from './../team.service';
 import { Team } from './../team';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from "rxjs";
+import { Resource } from "../resource";
 
 @Component({
   selector: 'app-create-team',
@@ -11,6 +13,7 @@ export class CreateTeamComponent implements OnInit {
 
   team: Team = new Team();
   submitted = false;
+  resourceList: Observable<Resource[]>;
 
   constructor(private teamService: TeamService) { }
 

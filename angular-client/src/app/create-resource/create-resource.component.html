@@ -1,4 +1,4 @@
-<h3>Create Resource</h3>
+<!-- <h3>Create Resource</h3>
 <div [hidden]="submitted" style="width: 400px;">
     <form (ngSubmit)="onSubmit()">
         <div class="form-group">
@@ -22,7 +22,7 @@
         </div>
 
         <div class="form-group">
-            <label for="name">Project</label>
+            <label for="name">Projects</label>
             <input type="text" class="form-control" id="project" required [(ngModel)]="resource.project" name="project">
         </div>
 
@@ -37,4 +37,121 @@
 
 <div [hidden]="!submitted">
     <h4>You submitted successfully!</h4>
+</div> -->
+
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"/> -->
+
+<h3>Create Resource</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form #resourceForm="ngForm" (ngSubmit)="onSubmit()">
+    <div
+      class="form-group"
+      [class.has-error]="roleInput.invalid && roleInput.touched"
+      [class.has-success]="roleInput.valid">
+      <label for="name">Role</label>
+      <input
+        type="text"
+        class="form-control"
+        id="role"
+        required
+        [(ngModel)]="resource.role"
+        #roleInput="ngModel"
+        name="role"/>
+      <span class="help-block" *ngIf="roleInput.invalid && roleInput.touched">This is a Required Field</span>
+    </div>
+
+    <div
+      class="form-group"
+      [class.has-error]="startDate.invalid && startDate.touched"
+      [class.has-success]="startDate.valid">
+      <label for="name">Start Date</label>
+      <input
+        type="date"
+        class="form-control"
+        id="start"
+        required
+        [(ngModel)]="resource.start"
+        #startDate="ngModel"
+        name="start"/>
+      <span class="help-block" *ngIf="startDate.invalid && startDate.touched">This is a Required Field</span>
+    </div>
+
+    <div
+      class="form-group"
+      [class.has-error]="endDate.invalid && endDate.touched"
+      [class.has-success]="endDate.valid">
+      <label for="name">End Date</label>
+      <input
+        type="date"
+        class="form-control"
+        id="end"
+        required
+        [(ngModel)]="resource.end"
+        #endDate="ngModel"
+        name="end"/>
+      <span class="help-block" *ngIf="endDate.invalid && endDate.touched"
+        >This is a Required Field</span>
+    </div>
+
+    <div
+      class="form-group"
+      [class.has-error]="sudoRole.invalid && sudoRole.touched"
+      [class.has-success]="sudoRole.valid">
+      <label for="name">Sudo Role</label>
+      <input
+        type="text"
+        class="form-control"
+        id="sudorole"
+        required
+        [(ngModel)]="resource.sudorole"
+        #sudoRole="ngModel"
+        name="sudorole"/>
+      <span class="help-block" *ngIf="sudoRole.invalid && sudoRole.touched">This is a Required Field</span>
+    </div>
+
+    <div
+      class="form-group"
+      [class.has-error]="projInput.invalid && projInput.touched"
+      [class.has-success]="projInput.valid">
+      <label for="name">Project</label>
+      <input
+        type="text"
+        class="form-control"
+        id="project"
+        required
+        [(ngModel)]="resource.project"
+        #projInput="ngModel"
+        name="project"/>
+      <span class="help-block" *ngIf="projInput.invalid && projInput.touched">This is a Required Field</span>
+    </div>
+
+    <div
+      class="form-group"
+      [class.has-error]="statusInput.invalid && statusInput.touched"
+      [class.has-success]="statusInput.valid">
+      <label for="name">Status</label>
+      <input
+        type="text"
+        class="form-control"
+        id="status"
+        required
+        [(ngModel)]="resource.status"
+        #statusInput="ngModel"
+        name="status"/>
+      <span
+        class="help-block"
+        *ngIf="statusInput.invalid && statusInput.touched">This is a Required Field</span>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-success"
+      [disabled]="resourceForm.invalid">
+      Submit
+    </button>
+  </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4>
 </div>
