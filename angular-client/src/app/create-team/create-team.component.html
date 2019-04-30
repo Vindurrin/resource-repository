@@ -1,61 +1,10 @@
-<!-- <h3>Create Team</h3>
-<div [hidden]="submitted" style="width: 400px;">
-    <form (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" required [(ngModel)]="team.name" name="name">
-        </div>
-
-        <div class="form-group">
-            <label for="name">Resources:</label>
-            <input type="text" class="form-control" id="resources" required [(ngModel)]="team.resources" name="resources">
-        </div>
-
-        <div class="form-group">
-            <label for="name">Status</label>
-            <input type="text" class="form-control" id="status" required [(ngModel)]="team.status" name="status">
-        </div>
-
-        <div class="form-group">
-            <label for="name">Start</label>
-            <input type="date" class="form-control" id="start" required [(ngModel)]="team.start" name="start">
-        </div>
-
-        <div class="form-group">
-            <label for="name">End</label>
-            <input type="date" class="form-control" id="end" required [(ngModel)]="team.end" name="end">
-        </div>
-
-        <div class="form-group">
-            <label for="name">Projects</label>
-            <input type="text" class="form-control" id="project" required [(ngModel)]="team.project" name="project">
-        </div>
-
-        <button type="submit" class="btn btn-success">Submit</button>
-    </form>
-</div>
-
-<div [hidden]="!submitted">
-    <h4>You submitted successfully!</h4>
-</div> -->
-
-
-
-
-
-
-
-
 
 <h3>Create Team</h3>
-
 <div [hidden]="submitted" style="width: 400px;">
-
   <form #teamForm="ngForm" (ngSubmit)="onSubmit()">
-
     <div
-      class="form-group" 
-      [class.has-error]="teamName.invalid && teamName.touched" 
+      class="form-group"
+      [class.has-error]="teamName.invalid && teamName.touched"
       [class.has-success]="teamName.valid">
       <label for="name">Name</label>
       <input
@@ -68,6 +17,7 @@
         name="name"/>
       <span class="help-block" *ngIf="teamName.invalid && teamName.touched">This is a Required Field</span>
     </div>
+
     <div
       class="form-group"
       [class.has-error]="resourceInput.invalid && resourceInput.touched"
@@ -85,6 +35,7 @@
         class="help-block"
         *ngIf="resourceInput.invalid && resourceInput.touched">This is a Required Field</span>
     </div>
+
     <div
       class="form-group"
       [class.has-error]="teamStatus.invalid && teamStatus.touched"
@@ -100,6 +51,7 @@
         name="status"/>
       <span class="help-block" *ngIf="teamStatus.invalid && teamStatus.touched">This is a Required Field</span>
     </div>
+
     <div
       class="form-group"
       [class.has-error]="startDate.invalid && startDate.touched"
@@ -115,6 +67,7 @@
         name="start"/>
       <span class="help-block" *ngIf="startDate.invalid && startDate.touched">This is a Required Field</span>
     </div>
+
     <div
       class="form-group"
       [class.has-error]="endDate.invalid && endDate.touched"
@@ -130,7 +83,11 @@
         name="end"/>
       <span class="help-block" *ngIf="endDate.invalid && endDate.touched">This is a Required Field</span>
     </div>
-    <div class="form-group">
+
+    <div
+      class="form-group"
+      [class.has-error]="teamProj.invalid && teamProj.touched"
+      [class.has-success]="teamProj.valid">
       <label for="name">Projects</label>
       <input
         type="text"
@@ -138,13 +95,17 @@
         id="project"
         required
         [(ngModel)]="team.project"
+        #teamProj="ngModel"
         name="project"/>
+      <span class="help-block" *ngIf="teamProj.invalid && teamProj.touched">This is a Required Field</span>
     </div>
+
     <button type="submit" class="btn btn-success" [disabled]="teamForm.invalid">
       Submit
     </button>
   </form>
 </div>
+
 <div [hidden]="!submitted">
   <h4>You submitted successfully!</h4>
 </div>
