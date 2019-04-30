@@ -34,7 +34,7 @@ public class TeamController {
     
     @PostMapping("/teams")
     public Team createTeam(@Valid @RequestBody Team team) {
-    	//System.out.println("Start date: " + team.getStart());
+    	team.fixDate();
         return teamRepository.save(team);
     }
 
@@ -50,6 +50,7 @@ public class TeamController {
         team.setStart(teamDetails.getStart());
         team.setEnd(teamDetails.getEnd());
         team.setProject(teamDetails.getProject());
+        team.fixDate();
         
         final Team updatedTeam = teamRepository.save(team);
         return ResponseEntity.ok(updatedTeam);

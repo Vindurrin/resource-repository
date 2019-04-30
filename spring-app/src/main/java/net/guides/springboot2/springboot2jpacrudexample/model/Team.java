@@ -1,13 +1,16 @@
 package net.guides.springboot2.springboot2jpacrudexample.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "teams")
@@ -18,12 +21,13 @@ public class Team {
 	private long id;
 	
 	@NotNull
+	@Size(min=2, max=64, message="name should be between 2 and 64 characters")
 	private String name;
 	
-	@NotNull
 	private String resources;
 	
 	@NotNull
+	@Size(min=2, max=64, message="status should be between 2 and 64 characters")
 	private String status;
 	
 	@NotNull
@@ -33,14 +37,14 @@ public class Team {
 	private Date end;
 	
 	@NotNull
+	@Size(min=2, max=64, message="project should be between 2 and 64 characters")
 	private String project;
 	
 	public Team() {
 		
 	}
 
-	public Team(long id, @NotNull String name, @NotNull String resources, @NotNull String status, @NotNull Date start,
-			@NotNull Date end, @NotNull String project) {
+	public Team(long id, String name, String resources, String status, Date start, Date end, String project) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -50,6 +54,12 @@ public class Team {
 		this.end = end;
 		this.project = project;
 	}
+	
+	public void fixDate() {
+    	final long HOUR = 3600*1000;
+    	start = new Date(start.getTime() + 6*HOUR);
+    	end = new Date(end.getTime() + 6*HOUR);
+    }
 
 	public long getId() {
 		return id;

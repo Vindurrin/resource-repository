@@ -29,7 +29,7 @@ public class Resource {
 	private Date end;
 	
 	@NotNull
-	@Size(min=2, max=64, message="suderole should be between 2 and 64 characters")
+	@Size(min=2, max=64, message="sudorole should be between 2 and 64 characters")
 	private String sudorole;
 	
 	@NotNull
@@ -42,6 +42,12 @@ public class Resource {
  
     public Resource() {
   
+    }
+    
+    public void fixDate() {
+    	final long HOUR = 3600*1000;
+    	start = new Date(start.getTime() + 6*HOUR);
+    	end = new Date(end.getTime() + 6*HOUR);
     }
 
 	public Resource(long id, String role, Date start, Date end, String sudorole, String project, String status) {
