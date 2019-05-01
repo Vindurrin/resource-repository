@@ -52,6 +52,4 @@ public class Springboot2JpaCrudExampleApplicationTests {
 		assertNotNull(teamController);
 	}
 
-	
-
 }
