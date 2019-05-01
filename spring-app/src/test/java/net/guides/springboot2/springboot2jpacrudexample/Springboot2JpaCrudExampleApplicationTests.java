@@ -1,10 +1,6 @@
 package net.guides.springboot2.springboot2jpacrudexample;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-
-import java.sql.Connection;
-import java.util.Optional;
 
 import org.junit.After;
 import org.junit.Before;
@@ -16,9 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import net.guides.springboot2.springboot2jpacrudexample.controller.ResourceController;
 import net.guides.springboot2.springboot2jpacrudexample.controller.TeamController;
-import net.guides.springboot2.springboot2jpacrudexample.model.Resource;
-import net.guides.springboot2.springboot2jpacrudexample.repository.ResourceRepository;
-import net.guides.springboot2.springboot2jpacrudexample.repository.TeamRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -29,12 +22,6 @@ public class Springboot2JpaCrudExampleApplicationTests {
 
 	@Autowired
 	private TeamController teamController;
-
-	@Autowired
-	private ResourceRepository resourceRepository;
-
-	@Autowired
-	private TeamRepository teamRepository;
 
 	@Before
 	public void setUp() {

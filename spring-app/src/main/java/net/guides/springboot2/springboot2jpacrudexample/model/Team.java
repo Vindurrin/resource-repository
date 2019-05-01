@@ -1,13 +1,13 @@
 package net.guides.springboot2.springboot2jpacrudexample.model;
 
 import java.util.Date;
-import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,25 +18,33 @@ public class Team {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column
 	private long id;
 	
 	@NotNull
 	@Size(min=2, max=64, message="name should be between 2 and 64 characters")
+	@Column
 	private String name;
 	
+	@OneToMany
+	@NotNull
 	private String resources;
 	
 	@NotNull
+	@Column
 	@Size(min=2, max=64, message="status should be between 2 and 64 characters")
 	private String status;
 	
 	@NotNull
+	@Column
 	private Date start;
 	
 	@NotNull
+	@Column
 	private Date end;
 	
 	@NotNull
+	@OneToMany
 	@Size(min=2, max=64, message="project should be between 2 and 64 characters")
 	private String project;
 	

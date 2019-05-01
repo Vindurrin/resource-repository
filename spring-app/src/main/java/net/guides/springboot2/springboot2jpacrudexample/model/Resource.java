@@ -2,10 +2,12 @@ package net.guides.springboot2.springboot2jpacrudexample.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -16,24 +18,30 @@ public class Resource {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column
     private long id;
 	
 	@NotNull
 	@Size(min=2, max=64, message="role should be between 2 and 64 characters")
+	@OneToMany
 	private String role;
 	
 	@NotNull
+	@Column
 	private Date start;
 	
 	@NotNull
+	@Column
 	private Date end;
 	
 	@NotNull
 	@Size(min=2, max=64, message="sudorole should be between 2 and 64 characters")
+	@OneToMany
 	private String sudorole;
 	
 	@NotNull
 	@Size(min=2, max=64, message="project should be between 2 and 64 characters")
+	@OneToMany
 	private String project;
 	
 	@NotNull
@@ -48,7 +56,7 @@ public class Resource {
     	final long HOUR = 3600*1000;
     	start = new Date(start.getTime() + 6*HOUR);
     	end = new Date(end.getTime() + 6*HOUR);
-    }
+	}
 
 	public Resource(long id, String role, Date start, Date end, String sudorole, String project, String status) {
 		super();
