@@ -49,7 +49,7 @@ public class TeamController {
         team.setStatus(teamDetails.getStatus());
         team.setStart(teamDetails.getStart());
         team.setEnd(teamDetails.getEnd());
-        team.setProject(teamDetails.getProject());
+        team.setProjects(teamDetails.getProjects());
         team.fixDate();
         
         final Team updatedTeam = teamRepository.save(team);
