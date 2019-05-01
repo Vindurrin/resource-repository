@@ -1,8 +1,11 @@
 package net.guides.springboot2.springboot2jpacrudexample.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -22,9 +26,9 @@ public class Resource {
     private long id;
 	
 	@NotNull
-	@Size(min=2, max=64, message="role should be between 2 and 64 characters")
-	@OneToMany
-	private String role;
+	// @Size(min=2, max=64, message="role should be between 2 and 64 characters")
+	@ElementCollection
+	private List<String> roles;
 	
 	@NotNull
 	@Column
@@ -35,17 +39,19 @@ public class Resource {
 	private Date end;
 	
 	@NotNull
-	@Size(min=2, max=64, message="sudorole should be between 2 and 64 characters")
-	@OneToMany
-	private String sudorole;
+	// @Size(min=2, max=64, message="sudorole should be between 2 and 64 characters")
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<SudoRole> sudoroles;
 	
 	@NotNull
-	@Size(min=2, max=64, message="project should be between 2 and 64 characters")
-	@OneToMany
-	private String project;
+	// @Size(min=2, max=64, message="project should be between 2 and 64 characters")
+	@ElementCollection
+	private List<String> projects;
 	
 	@NotNull
-	@Size(min=2, max=64, message="status should be between 2 and 64 characters")
+	@Column
+	@Pattern(regexp = "active|Active|Inactive|inactive", flags = Pattern.Flag.CASE_INSENSITIVE)
+	@Size(min=2, max=64, message="Status should be either Active or Inactive.")
 	private String status;
  
     public Resource() {
@@ -58,14 +64,14 @@ public class Resource {
     	end = new Date(end.getTime() + 6*HOUR);
 	}
 
-	public Resource(long id, String role, Date start, Date end, String sudorole, String project, String status) {
+	public Resource(long id, List<String> roles, Date start, Date end, List<SudoRole> sudoroles, List<String> projects, String status) {
 		super();
 		this.id = id;
-		this.role = role;
+		this.roles = roles;
 		this.start = start;
 		this.end = end;
-		this.sudorole = sudorole;
-		this.project = project;
+		this.sudoroles = sudoroles;
+		this.projects = projects;
 		this.status = status;
 	}
 
@@ -77,12 +83,12 @@ public class Resource {
 		this.id = id;
 	}
 
-	public String getRole() {
-		return role;
+	public List<String> getRoles() {
+		return roles;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
 	}
 
 	public Date getStart() {
@@ -101,20 +107,20 @@ public class Resource {
 		this.end = end;
 	}
 
-	public String getSudorole() {
-		return sudorole;
+	public List<SudoRole> getSudoroles() {
+		return sudoroles;
 	}
 
-	public void setSudorole(String sudorole) {
-		this.sudorole = sudorole;
+	public void setSudoroles(List<SudoRole> sudoroles) {
+		this.sudoroles = sudoroles;
 	}
 
-	public String getProject() {
-		return project;
+	public List<String> getProjects() {
+		return projects;
 	}
 
-	public void setProject(String project) {
-		this.project = project;
+	public void setProjects(List<String> projects) {
+		this.projects = projects;
 	}
 
 	public String getStatus() {
@@ -127,8 +133,8 @@ public class Resource {
 
 	@Override
 	public String toString() {
-		return "Resource [id=" + id + ", role=" + role + ", start=" + start + ", end=" + end + ", sudorole=" + sudorole
-				+ ", project=" + project + ", status=" + status + "]";
+		return "Resource [id=" + id + ", role=" + roles + ", start=" + start + ", end=" + end + ", sudorole=" + sudoroles
+				+ ", project=" + projects + ", status=" + status + "]";
 	}
 
 }

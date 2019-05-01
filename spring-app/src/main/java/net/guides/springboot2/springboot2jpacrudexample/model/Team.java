@@ -1,8 +1,11 @@
 package net.guides.springboot2.springboot2jpacrudexample.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,9 +29,9 @@ public class Team {
 	@Column
 	private String name;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@NotNull
-	private String resources;
+	private List<Resource> resources;
 	
 	@NotNull
 	@Column
@@ -44,15 +47,15 @@ public class Team {
 	private Date end;
 	
 	@NotNull
-	@OneToMany
-	@Size(min=2, max=64, message="project should be between 2 and 64 characters")
-	private String project;
+	@ElementCollection
+	// @Size(min=2, max=64, message="project should be between 2 and 64 characters")
+	private List<String> projects;
 	
 	public Team() {
 		
 	}
 
-	public Team(long id, String name, String resources, String status, Date start, Date end, String project) {
+	public Team(long id, String name, List<Resource> resources, String status, Date start, Date end, List<String> projects) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -60,7 +63,7 @@ public class Team {
 		this.status = status;
 		this.start = start;
 		this.end = end;
-		this.project = project;
+		this.projects = projects;
 	}
 	
 	public void fixDate() {
@@ -85,11 +88,11 @@ public class Team {
 		this.name = name;
 	}
 
-	public String getResources() {
+	public @NotNull List<Resource> getResources() {
 		return resources;
 	}
 
-	public void setResources(String resources) {
+	public void setResources(@NotNull List<Resource> resources) {
 		this.resources = resources;
 	}
 
@@ -117,18 +120,18 @@ public class Team {
 		this.end = end;
 	}
 
-	public String getProject() {
-		return project;
+	public List<String> getProjects() {
+		return projects;
 	}
 
-	public void setProject(String project) {
-		this.project = project;
+	public void setProjects(List<String> projects) {
+		this.projects = projects;
 	}
 
 	@Override
 	public String toString() {
 		return "Team [id=" + id + ", name=" + name + ", resources=" + resources + ", status=" + status + ", start="
-				+ start + ", end=" + end + ", project=" + project + "]";
+				+ start + ", end=" + end + ", project=" + projects + "]";
 	}
 
 }
