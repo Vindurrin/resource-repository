@@ -13,6 +13,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 import net.guides.springboot2.springboot2jpacrudexample.controller.ResourceController;
 import net.guides.springboot2.springboot2jpacrudexample.controller.TeamController;
 
+/**
+ * 
+ * @author matthew.burt
+ *
+ */
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class Springboot2JpaCrudExampleApplicationTests {
