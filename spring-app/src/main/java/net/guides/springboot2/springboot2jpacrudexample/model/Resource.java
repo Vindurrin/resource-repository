@@ -1,19 +1,13 @@
 package net.guides.springboot2.springboot2jpacrudexample.model;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -22,34 +16,28 @@ public class Resource {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column
     private long id;
 	
-	@NotNull(message="roles is the problem")
-	// @Size(min=2, max=64, message="role should be between 2 and 64 characters")
-	@ElementCollection
-	private List<String> roles;
+	@NotNull
+	@Size(min=2, max=64, message="role should be between 2 and 64 characters")
+	private String role;
 	
-	@NotNull(message="start date is the problem")
-	@Column
+	@NotNull
 	private Date start;
 	
-	@NotNull(message="end date is the problem")
-	@Column
+	@NotNull
 	private Date end;
 	
-	@NotNull(message="sudoroles is the problem")
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<SudoRole> sudoroles;
+	@NotNull
+	@Size(min=2, max=64, message="sudorole should be between 2 and 64 characters")
+	private String sudorole;
 	
-	@NotNull(message="projects is the problem")
-	@ElementCollection
-	private List<String> projects;
+	@NotNull
+	@Size(min=2, max=64, message="project should be between 2 and 64 characters")
+	private String project;
 	
-	@NotNull(message="status is the problem")
-	@Column
-	@Pattern(regexp = "active|Active|Inactive|inactive", flags = Pattern.Flag.CASE_INSENSITIVE)
-	@Size(min=2, max=64, message="Status should be either Active or Inactive.")
+	@NotNull
+	@Size(min=2, max=64, message="status should be between 2 and 64 characters")
 	private String status;
  
     public Resource() {
@@ -60,16 +48,16 @@ public class Resource {
     	final long HOUR = 3600*1000;
     	start = new Date(start.getTime() + 6*HOUR);
     	end = new Date(end.getTime() + 6*HOUR);
-	}
+    }
 
-	public Resource(long id, List<String> roles, Date start, Date end, List<SudoRole> sudoroles, List<String> projects, String status) {
+	public Resource(long id, String role, Date start, Date end, String sudorole, String project, String status) {
 		super();
 		this.id = id;
-		this.roles = roles;
+		this.role = role;
 		this.start = start;
 		this.end = end;
-		this.sudoroles = sudoroles;
-		this.projects = projects;
+		this.sudorole = sudorole;
+		this.project = project;
 		this.status = status;
 	}
 
@@ -81,12 +69,12 @@ public class Resource {
 		this.id = id;
 	}
 
-	public List<String> getRoles() {
-		return roles;
+	public String getRole() {
+		return role;
 	}
 
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public Date getStart() {
@@ -105,20 +93,20 @@ public class Resource {
 		this.end = end;
 	}
 
-	public List<SudoRole> getSudoroles() {
-		return sudoroles;
+	public String getSudorole() {
+		return sudorole;
 	}
 
-	public void setSudoroles(List<SudoRole> sudoroles) {
-		this.sudoroles = sudoroles;
+	public void setSudorole(String sudorole) {
+		this.sudorole = sudorole;
 	}
 
-	public List<String> getProjects() {
-		return projects;
+	public String getProject() {
+		return project;
 	}
 
-	public void setProjects(List<String> projects) {
-		this.projects = projects;
+	public void setProject(String project) {
+		this.project = project;
 	}
 
 	public String getStatus() {
@@ -131,8 +119,8 @@ public class Resource {
 
 	@Override
 	public String toString() {
-		return "Resource [id=" + id + ", roles=" + roles + ", start=" + start + ", end=" + end + ", sudoroles=" + sudoroles
-				+ ", projects=" + projects + ", status=" + status + "]";
+		return "Resource [id=" + id + ", role=" + role + ", start=" + start + ", end=" + end + ", sudorole=" + sudorole
+				+ ", project=" + project + ", status=" + status + "]";
 	}
 
 }

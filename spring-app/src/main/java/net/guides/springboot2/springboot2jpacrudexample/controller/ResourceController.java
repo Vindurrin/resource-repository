@@ -40,7 +40,7 @@ public class ResourceController {
     	List<Resource> allResources = resourceRepository.findAll();
     	List<Resource> results = new ArrayList<Resource>();
     	for(Resource resource : allResources) {
-    		if(resource.getRoles().contains(role) || resource.getProjects().contains(role)) {
+    		if(resource.getRole().contains(role) || resource.getProject().contains(role)) {
     			results.add(resource);
     		}
     	}
@@ -59,11 +59,11 @@ public class ResourceController {
         Resource resource = resourceRepository.findById(resourceId)
         .orElseThrow(() -> new ResourceNotFoundException("Resource not found for this id: " + resourceId));
 
-        resource.setRoles(resourceDetails.getRoles());
+        resource.setRole(resourceDetails.getRole());
         resource.setStart(resourceDetails.getStart());
         resource.setEnd(resourceDetails.getEnd());
-        resource.setSudoroles(resourceDetails.getSudoroles());
-        resource.setProjects(resourceDetails.getProjects());
+        resource.setSudorole(resourceDetails.getSudorole());
+        resource.setProject(resourceDetails.getProject());
         resource.setStatus(resourceDetails.getStatus());
         resource.fixDate();
 

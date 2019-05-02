@@ -3,13 +3,12 @@ package net.guides.springboot2.springboot2jpacrudexample.model;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -21,41 +20,35 @@ public class Team {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column
 	private long id;
 	
 	@NotNull
 	@Size(min=2, max=64, message="name should be between 2 and 64 characters")
-	@Column
 	private String name;
 	
-	@OneToMany(cascade = CascadeType.ALL)
 	@NotNull
-	private List<Resource> resources;
+	@ElementCollection
+	private List<String> resources;
 	
 	@NotNull
-	@Column
 	@Size(min=2, max=64, message="status should be between 2 and 64 characters")
 	private String status;
 	
 	@NotNull
-	@Column
 	private Date start;
 	
 	@NotNull
-	@Column
 	private Date end;
 	
 	@NotNull
-	@ElementCollection
-	// @Size(min=2, max=64, message="project should be between 2 and 64 characters")
-	private List<String> projects;
+	@Size(min=2, max=64, message="project should be between 2 and 64 characters")
+	private String project;
 	
 	public Team() {
 		
 	}
 
-	public Team(long id, String name, List<Resource> resources, String status, Date start, Date end, List<String> projects) {
+	public Team(long id, String name, List<String> resources, String status, Date start, Date end, String project) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -63,7 +56,7 @@ public class Team {
 		this.status = status;
 		this.start = start;
 		this.end = end;
-		this.projects = projects;
+		this.project = project;
 	}
 	
 	public void fixDate() {
@@ -88,11 +81,11 @@ public class Team {
 		this.name = name;
 	}
 
-	public @NotNull List<Resource> getResources() {
+	public List<String> getResources() {
 		return resources;
 	}
 
-	public void setResources(@NotNull List<Resource> resources) {
+	public void setResources(List<String> resources) {
 		this.resources = resources;
 	}
 
@@ -120,18 +113,18 @@ public class Team {
 		this.end = end;
 	}
 
-	public List<String> getProjects() {
-		return projects;
+	public String getProject() {
+		return project;
 	}
 
-	public void setProjects(List<String> projects) {
-		this.projects = projects;
+	public void setProject(String project) {
+		this.project = project;
 	}
 
 	@Override
 	public String toString() {
 		return "Team [id=" + id + ", name=" + name + ", resources=" + resources + ", status=" + status + ", start="
-				+ start + ", end=" + end + ", project=" + projects + "]";
+				+ start + ", end=" + end + ", project=" + project + "]";
 	}
 
 }
