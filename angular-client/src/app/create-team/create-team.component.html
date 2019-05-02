@@ -1,12 +1,13 @@
 
 <h3>Create Team</h3>
-<div [hidden]="submitted" style="width: 400px;">
+<p>* Required Fields</p>
+<div style="width: 400px;">
   <form #teamForm="ngForm" (ngSubmit)="onSubmit()">
     <div
       class="form-group"
       [class.has-error]="teamName.invalid && teamName.touched"
       [class.has-success]="teamName.valid">
-      <label for="name">Name</label>
+      <label for="name">Name *</label>
       <input
         type="text"
         class="form-control"
@@ -18,29 +19,18 @@
       <span class="help-block" *ngIf="teamName.invalid && teamName.touched">This is a Required Field</span>
     </div>
 
-    <div
-      class="form-group"
-      [class.has-error]="resourceInput.invalid && resourceInput.touched"
-      [class.has-success]="resourceInput.valid">
-      <label for="name">Resource</label>
-      <input
-        type="text"
-        class="form-control"
-        id="resource"
-        required
-        [(ngModel)]="team.resources"
-        #resourceInput="ngModel"
-        name="resource"/>
-      <span
-        class="help-block"
-        *ngIf="resourceInput.invalid && resourceInput.touched">This is a Required Field</span>
+    <div class="form-group">
+      <label for="name">Resources *</label><br/>
+      <select size="4" class="form-control" id="resources" [(ngModel)]="team.resources" name="resources" multiple>
+        <option *ngFor="let item of resourceList">{{item.role}}</option>
+      </select>
     </div>
 
     <div
       class="form-group"
       [class.has-error]="teamStatus.invalid && teamStatus.touched"
       [class.has-success]="teamStatus.valid">
-      <label for="name">Status</label>
+      <label for="name">Status *</label>
       <input
         type="text"
         class="form-control"
@@ -56,7 +46,7 @@
       class="form-group"
       [class.has-error]="startDate.invalid && startDate.touched"
       [class.has-success]="startDate.valid">
-      <label for="name">Start Date</label>
+      <label for="name">Start Date *</label>
       <input
         type="date"
         class="form-control"
@@ -72,7 +62,7 @@
       class="form-group"
       [class.has-error]="endDate.invalid && endDate.touched"
       [class.has-success]="endDate.valid">
-      <label for="name">End Date</label>
+      <label for="name">End Date *</label>
       <input
         type="date"
         class="form-control"
@@ -88,7 +78,7 @@
       class="form-group"
       [class.has-error]="teamProj.invalid && teamProj.touched"
       [class.has-success]="teamProj.valid">
-      <label for="name">Projects</label>
+      <label for="name">Projects *</label>
       <input
         type="text"
         class="form-control"
@@ -104,8 +94,4 @@
       Submit
     </button>
   </form>
-</div>
-
-<div [hidden]="!submitted">
-  <h4>You submitted successfully!</h4>
 </div>

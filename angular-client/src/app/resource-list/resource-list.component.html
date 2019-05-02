@@ -38,7 +38,8 @@
                     <td>{{resource.project}}</td>
                     <td>{{resource.status}}</td>
                     <td>
-                        <a [routerLink]="['edit', resource.id]" class="btn btn-primary">Update</a>&nbsp;&nbsp;
+                        <a (click)="edit(resource.id, resource.role, resource.start, resource.end, resource.sudorole, resource.project, resource.status)" 
+                        class="btn btn-primary">Update</a>&nbsp;&nbsp;
                         <a (click)="deleteResource(resource.id)" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>

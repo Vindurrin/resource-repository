@@ -28,7 +28,8 @@
                 <td>{{team.end | date:'MM/dd/yyyy'}}</td>
                 <td>{{team.project}}</td>
                 <td>
-                    <a [routerLink]="['edit', team.id]" class="btn btn-primary">Update</a>&nbsp;&nbsp;
+                    <a (click)="edit(team.id, team.name, team.status, team.start, team.end, team.project)" 
+                    class="btn btn-primary">Update</a>&nbsp;&nbsp;
                     <a (click)="deleteTeam(team.id)" class="btn btn-danger">Delete</a>
                 </td>
               </tr>

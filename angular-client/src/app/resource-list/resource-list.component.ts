@@ -44,4 +44,15 @@ export class ResourceListComponent implements OnInit {
         error => console.log(error));
   }
 
+  edit(id: number, role: string, start: string, end: string, sudorole: string, project: string, status: string){
+    window.localStorage.setItem('edit_id', id.toString());
+    window.localStorage.setItem('edit_role', role);
+    window.localStorage.setItem('edit_start', start.toString());
+    window.localStorage.setItem('edit_end', end.toString());
+    window.localStorage.setItem('edit_sudorole', sudorole);
+    window.localStorage.setItem('edit_project', project);
+    window.localStorage.setItem('edit_status', status);
+    this.router.navigateByUrl(`resources/edit/${id}`);
+  }
+
 }

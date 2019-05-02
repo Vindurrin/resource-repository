@@ -3,6 +3,8 @@ import { Team } from './../team';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs";
 import { Resource } from "../resource";
+import { Router } from '@angular/router';
+import { ResourceService } from '../resource.service';
 
 @Component({
   selector: 'app-create-team',
@@ -12,27 +14,26 @@ import { Resource } from "../resource";
 export class CreateTeamComponent implements OnInit {
 
   team: Team = new Team();
-  submitted = false;
   resourceList: Observable<Resource[]>;
 
-  constructor(private teamService: TeamService) { }
+  constructor(private router: Router, private teamService: TeamService, private resourceService: ResourceService) { }
 
   ngOnInit() {
+    this.resourceService.getResourcesList().subscribe(res=>this.resourceList=res);
   }
 
   newTeam(): void {
-    this.submitted = false;
     this.team = new Team();
   }
 
   save() {
-    this.teamService.createTeam(this.team)
-      .subscribe(data => console.log(data), error => console.log(error));
+    this.teamService.createTeam(this.team).subscribe(data => console.log(data), error => console.log(error));
+    alert("Team Saved Successfully. Please allow a moment for the data to appear.");
+    this.router.navigate(["/teams"]);
     this.team = new Team();
   }
 
   onSubmit() {
-    this.submitted = true;
     this.save();
   }
 }

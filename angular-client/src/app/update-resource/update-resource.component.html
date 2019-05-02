@@ -1,45 +1,124 @@
 <h3>Update Resource</h3>
-<div [hidden]="submitted" style="width: 400px;">
-    <form (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="name">ID</label>
-            <input type="text" class="form-control" id="id" required [(ngModel)]="resource.id" name="id">
-        </div>
+<div style="width: 400px;">
+  <form #updateForm="ngForm" (ngSubmit)="onSubmit()">
+    <div
+      class="form-group"
+      [class.has-error]="updateid.invalid && updateid.touched"
+      [class.has-success]="updateid.valid">
+      <label for="name">ID *</label>
+      <input
+        type="text"
+        class="form-control"
+        id="id"
+        required
+        [(ngModel)]="resource.id"
+        #updateid="ngModel"
+        name="id"
+        readonly/>
+      <span class="help-block" *ngIf="updateid.invalid && updateid.touched">This is a Required Field</span>
+    </div>
 
-        <div class="form-group">
-            <label for="name">Role</label>
-            <input type="text" class="form-control" id="role" required [(ngModel)]="resource.role" name="role">
-        </div>
+    <div
+      class="form-group"
+      [class.has-error]="updateName.invalid && updateName.touched"
+      [class.has-success]="updateName.valid">
+      <label for="name">Role *</label>
+      <input
+        type="text"
+        class="form-control"
+        id="role"
+        required
+        [(ngModel)]="resource.role"
+        #updateName="ngModel"
+        name="role"/>
+      <span class="help-block" *ngIf="updateName.invalid && updateName.touched">This is a Required Field</span>
+    </div>
 
-        <div class="form-group">
-            <label for="name">Start Date</label>
-            <input type="date" class="form-control" id="start" required [(ngModel)]="resource.start" name="start">
-        </div>
+    <div
+      class="form-group"
+      [class.has-error]="updateStart.invalid && updateStart.touched"
+      [class.has-success]="updateStart.valid">
+      <label for="name">Start Date *</label>
+      <input
+        type="date"
+        class="form-control"
+        id="start"
+        required
+        [(ngModel)]="resource.start"
+        #updateStart="ngModel"
+        name="start"/>
+      <span class="help-block" *ngIf="updateStart.invalid && updateStart.touched">This is a Required Field</span>
+    </div>
 
-        <div class="form-group">
-            <label for="name">End Date</label>
-            <input type="date" class="form-control" id="end" required [(ngModel)]="resource.end" name="end">
-        </div>
+    <div
+      class="form-group"
+      [class.has-error]="updateEnd.invalid && updateEnd.touched"
+      [class.has-success]="updateEnd.valid">
+      <label for="name">End Date *</label>
+      <input
+        type="date"
+        class="form-control"
+        id="end"
+        required
+        [(ngModel)]="resource.end"
+        #updateEnd="ngModel"
+        name="end"/>
+      <span class="help-block" *ngIf="updateStart.invalid && updateStart.touched" >This is a Required Field</span>
+    </div>
 
-        <div class="form-group">
-            <label for="name">Sudo Role</label>
-            <input type="text" class="form-control" id="sudorole" required [(ngModel)]="resource.sudorole" name="sudorole">
-        </div>
+    <div
+      class="form-group"
+      [class.has-error]="updateEnd.invalid && updateEnd.touched"
+      [class.has-success]="updateEnd.valid">
+      <label for="name">Sudo Role *</label>
+      <input
+        type="text"
+        class="form-control"
+        id="sudorole"
+        required
+        [(ngModel)]="resource.sudorole"
+        #updateSudo="ngModel"
+        name="sudorole"/>
+      <span class="help-block" *ngIf="updateSudo.invalid && updateSudo.touched">This is a Required Field</span>
+    </div>
 
-        <div class="form-group">
-            <label for="name">Projects</label>
-            <input type="text" class="form-control" id="project" required [(ngModel)]="resource.project" name="project">
-        </div>
+    <div
+      class="form-group"
+      [class.has-error]="updateProj.invalid && updateProj.touched"
+      [class.has-success]="updateProj.valid">
+      <label for="name">Project *</label>
+      <input
+        type="text"
+        class="form-control"
+        id="project"
+        required
+        [(ngModel)]="resource.project"
+        #updateProj="ngModel"
+        name="project"/>
+      <span class="help-block" *ngIf="updateProj.invalid && updateProj.touched">This is a Required Field</span>
+    </div>
 
-        <div class="form-group">
-            <label for="name">Status</label>
-            <input type="text" class="form-control" id="status" required [(ngModel)]="resource.status" name="status">
-        </div>
+    <div
+      class="form-group"
+      [class.has-error]="updateStatus.invalid && updateStatus.touched"
+      [class.has-success]="updateStatus.valid">
+      <label for="name">Status *</label>
+      <input
+        type="text"
+        class="form-control"
+        id="status"
+        required
+        [(ngModel)]="resource.status"
+        #updateStatus="ngModel"
+        name="status"/>
+      <span class="help-block" *ngIf="updateStatus.invalid && updateStatus.touched">This is a Required Field</span>
+    </div>
 
-        <button type="submit" class="btn btn-success">Update</button>
-    </form>
-</div>
-
-<div [hidden]="!submitted">
-    <h4>You updated successfully!</h4>
+    <button
+      type="submit"
+      class="btn btn-success"
+      [disabled]="updateForm.invalid">
+      Update
+    </button>
+  </form>
 </div>

@@ -2,6 +2,7 @@ import { Observable } from "rxjs";
 import { TeamService } from "../team.service";
 import { Team } from "../team";
 import { Component, OnInit } from "@angular/core";
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-team-list",
@@ -12,7 +13,7 @@ export class TeamListComponent implements OnInit {
   teams: Observable<Team[]>;
   teamRole: string;
 
-  constructor(private teamService: TeamService) {}
+  constructor(private teamService: TeamService, private router: Router) {}
 
   ngOnInit() {
     this.reloadData();
@@ -32,5 +33,14 @@ export class TeamListComponent implements OnInit {
         error => console.log(error));
   }
 
+  edit(id: number, name: string, status: string, start: string, end: string, project: string){
+    window.localStorage.setItem("edit_id", id.toString());
+    window.localStorage.setItem("edit_name", name);
+    window.localStorage.setItem("edit_status", status);
+    window.localStorage.setItem("edit_start", start);
+    window.localStorage.setItem("edit_end", end);
+    window.localStorage.setItem("edit_project", project);
+    this.router.navigateByUrl(`teams/edit/${id}`);
+  }
 
 }

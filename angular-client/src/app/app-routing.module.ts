@@ -11,7 +11,7 @@ import { CreateTeamComponent } from './create-team/create-team.component';
 import { UpdateTeamComponent } from './update-team/update-team.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'resource', pathMatch: 'full' },
+  { path: '', redirectTo: 'resources', pathMatch: 'full' },
   { path: 'resources', component: ResourceListComponent },
   { path: 'resources/:role', component: ResourceDetailsComponent },
   { path: 'add', component: CreateResourceComponent },
