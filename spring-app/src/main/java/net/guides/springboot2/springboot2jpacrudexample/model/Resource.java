@@ -25,30 +25,28 @@ public class Resource {
 	@Column
     private long id;
 	
-	@NotNull
+	@NotNull(message="roles is the problem")
 	// @Size(min=2, max=64, message="role should be between 2 and 64 characters")
 	@ElementCollection
 	private List<String> roles;
 	
-	@NotNull
+	@NotNull(message="start date is the problem")
 	@Column
 	private Date start;
 	
-	@NotNull
+	@NotNull(message="end date is the problem")
 	@Column
 	private Date end;
 	
-	@NotNull
-	// @Size(min=2, max=64, message="sudorole should be between 2 and 64 characters")
+	@NotNull(message="sudoroles is the problem")
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<SudoRole> sudoroles;
 	
-	@NotNull
-	// @Size(min=2, max=64, message="project should be between 2 and 64 characters")
+	@NotNull(message="projects is the problem")
 	@ElementCollection
 	private List<String> projects;
 	
-	@NotNull
+	@NotNull(message="status is the problem")
 	@Column
 	@Pattern(regexp = "active|Active|Inactive|inactive", flags = Pattern.Flag.CASE_INSENSITIVE)
 	@Size(min=2, max=64, message="Status should be either Active or Inactive.")
@@ -133,8 +131,8 @@ public class Resource {
 
 	@Override
 	public String toString() {
-		return "Resource [id=" + id + ", role=" + roles + ", start=" + start + ", end=" + end + ", sudorole=" + sudoroles
-				+ ", project=" + projects + ", status=" + status + "]";
+		return "Resource [id=" + id + ", roles=" + roles + ", start=" + start + ", end=" + end + ", sudoroles=" + sudoroles
+				+ ", projects=" + projects + ", status=" + status + "]";
 	}
 
 }
