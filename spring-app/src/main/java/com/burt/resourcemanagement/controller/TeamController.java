@@ -1,4 +1,4 @@
-package net.guides.springboot2.springboot2jpacrudexample.controller;
+package com.burt.resourcemanagement.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.guides.springboot2.springboot2jpacrudexample.exception.TeamNotFoundException;
-import net.guides.springboot2.springboot2jpacrudexample.model.Team;
-import net.guides.springboot2.springboot2jpacrudexample.repository.TeamRepository;
+import com.burt.resourcemanagement.exception.TeamNotFoundException;
+import com.burt.resourcemanagement.model.Team;
+import com.burt.resourcemanagement.repository.TeamRepository;
 
 @RestController
 @RequestMapping("/api/v1")

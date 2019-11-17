@@ -1,12 +1,12 @@
-package net.guides.springboot2.springboot2jpacrudexample;
+package com.burt.resourcemanagement;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Springboot2JpaCrudExampleApplication {
+public class ResourceManagement {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Springboot2JpaCrudExampleApplication.class, args);
+		SpringApplication.run(ResourceManagement.class, args);
 	}
 }
