@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class TeamService {
 
-  private baseUrl = '/api/v1/teams';
+  // private baseUrl = '/api/v1/teams';
+  private baseUrl = 'http://localhost:4444/api/v1/teams';
 
   constructor(private http: HttpClient) { }
 

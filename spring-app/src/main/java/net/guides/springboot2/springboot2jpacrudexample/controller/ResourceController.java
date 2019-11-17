@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,11 +29,13 @@ public class ResourceController {
     @Autowired
     private ResourceRepository resourceRepository;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/resources")
     public List<Resource> getAllResources() {
         return resourceRepository.findAll();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/resources/{role}")
     public List<Resource> getResourceByRole(@PathVariable(value = "role") String role)
         throws ResourceNotFoundException {
@@ -47,12 +50,14 @@ public class ResourceController {
         return results;
     }
     
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/resources")
     public Resource createResource(@Valid @RequestBody Resource resource) {
     	resource.fixDate();
         return resourceRepository.save(resource);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/resources/edit/{id}")
     public ResponseEntity<Resource> updateResource(@PathVariable(value = "id") Long resourceId,
          @Valid @RequestBody Resource resourceDetails) throws ResourceNotFoundException {
@@ -72,6 +77,7 @@ public class ResourceController {
         return ResponseEntity.ok(updatedResource);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("/resources/{id}")
     public Map<String, Boolean> deleteResource(@PathVariable(value = "id") Long resourceId)
          throws ResourceNotFoundException {

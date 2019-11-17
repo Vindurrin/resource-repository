@@ -23,7 +23,7 @@ export class CreateResourceComponent implements OnInit {
 
   save() {
     this.resourceService.createResource(this.resource).subscribe(data => console.log(data), error => console.log(error));
-    alert("Resource Saved Successfully. Please allow a moment for the data to appear.");
+    // alert("Resource Saved Successfully. Please allow a moment for the data to appear.");
     this.router.navigate(["/resources"]);
     this.resource = new Resource();
   }
