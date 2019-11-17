@@ -16,9 +16,9 @@ public class DatabaseTest {
 	@Before
 	public void setUp() throws Exception {
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		String url = "jdbc:mysql://localhost:3306/resource";
+		String url = "jdbc:mysql://localhost:3306/resource_db";
 		String user = "root";
-		String password = "mmiles";
+		String password = "Monday12";
 		connection = DriverManager.getConnection(url, user, password);
 	}
 
