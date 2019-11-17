@@ -1,14 +1,14 @@
-package net.guides.springboot2.springboot2jpacrudexample.exception;
+package com.burt.resourcemanagement.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
-public class TeamNotFoundException extends Exception{
+public class ResourceNotFoundException extends Exception{
 
     private static final long serialVersionUID = 1L;
 
-    public TeamNotFoundException(String message){
+    public ResourceNotFoundException(String message){
         super(message);
     }
 }

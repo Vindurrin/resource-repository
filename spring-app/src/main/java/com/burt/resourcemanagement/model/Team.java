@@ -1,4 +1,4 @@
-package net.guides.springboot2.springboot2jpacrudexample.model;
+package com.burt.resourcemanagement.model;
 
 import java.util.Date;
 import java.util.List;

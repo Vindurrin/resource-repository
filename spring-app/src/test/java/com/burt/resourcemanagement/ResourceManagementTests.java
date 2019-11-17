@@ -1,6 +1,9 @@
-package net.guides.springboot2.springboot2jpacrudexample;
+package com.burt.resourcemanagement;
 
 import static org.junit.Assert.assertNotNull;
+
+import com.burt.resourcemanagement.controller.ResourceController;
+import com.burt.resourcemanagement.controller.TeamController;
 
 import org.junit.After;
 import org.junit.Before;
@@ -10,9 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import net.guides.springboot2.springboot2jpacrudexample.controller.ResourceController;
-import net.guides.springboot2.springboot2jpacrudexample.controller.TeamController;
-
 /**
  * 
  * @author matthew.burt
@@ -21,7 +21,7 @@ import net.guides.springboot2.springboot2jpacrudexample.controller.TeamControlle
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class Springboot2JpaCrudExampleApplicationTests {
+public class ResourceManagementTests {
 
 	@Autowired
 	private ResourceController resourceController;
@@ -44,5 +44,7 @@ public class Springboot2JpaCrudExampleApplicationTests {
 		assertNotNull(resourceController);
 		assertNotNull(teamController);
 	}
+
+	
 
 }

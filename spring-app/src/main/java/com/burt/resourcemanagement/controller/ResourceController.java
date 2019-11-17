@@ -1,4 +1,4 @@
-package net.guides.springboot2.springboot2jpacrudexample.controller;
+package com.burt.resourcemanagement.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.guides.springboot2.springboot2jpacrudexample.exception.ResourceNotFoundException;
-import net.guides.springboot2.springboot2jpacrudexample.model.Resource;
-import net.guides.springboot2.springboot2jpacrudexample.repository.ResourceRepository;
+import com.burt.resourcemanagement.exception.ResourceNotFoundException;
+import com.burt.resourcemanagement.model.Resource;
+import com.burt.resourcemanagement.repository.ResourceRepository;
 
 @RestController
 @RequestMapping("/api/v1")

@@ -1,4 +1,4 @@
-package net.guides.springboot2.springboot2jpacrudexample;
+package com.burt.resourcemanagement;
 
 import static org.junit.Assert.*;
 
