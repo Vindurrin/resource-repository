@@ -1,0 +1,38 @@
+version: 2
+updates:
+  - package-ecosystem: "maven"
+    directory: "/spring-app"
+    schedule:
+      interval: "weekly"
+    groups:
+      spring-boot-core:
+        patterns:
+          - "org.springframework.boot:*"
+      backend-test-and-quality:
+        patterns:
+          - "org.jacoco:*"
+          - "org.junit:*"
+          - "org.mockito:*"
+
+  - package-ecosystem: "npm"
+    directory: "/react-client"
+    schedule:
+      interval: "weekly"
+    groups:
+      react-core:
+        patterns:
+          - "react"
+          - "react-dom"
+      react-tooling:
+        patterns:
+          - "vite"
+          - "@types/*"
+
+  - package-ecosystem: "npm"
+    directory: "/angular-client"
+    schedule:
+      interval: "monthly"
+    ignore:
+      - dependency-name: "*"
+    labels:
+      - "security-only"

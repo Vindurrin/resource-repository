@@ -1,0 +1,57 @@
+name: Dependency Governance
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  policy-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Enforce framework major version policy
+        run: node tools/check-framework-majors.mjs
+
+  backend-sca:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Backend dependency vulnerability scan (OWASP Dependency-Check)
+        run: |
+          cd spring-app
+          ./mvnw -B org.owasp:dependency-check-maven:check
+
+  frontend-sca:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app: [angular-client, react-client]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ${{ matrix.app }}
+
+      - name: Frontend dependency vulnerability scan (npm audit)
+        run: npm audit --audit-level=moderate
+        working-directory: ${{ matrix.app }}
