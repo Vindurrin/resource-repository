@@ -53,7 +53,6 @@ public class ResourceController {
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/resources")
     public Resource createResource(@Valid @RequestBody Resource resource) {
-    	resource.fixDate();
         return resourceRepository.save(resource);
     }
 
@@ -70,7 +69,6 @@ public class ResourceController {
         resource.setSudorole(resourceDetails.getSudorole());
         resource.setProject(resourceDetails.getProject());
         resource.setStatus(resourceDetails.getStatus());
-        resource.fixDate();
 
         
         final Resource updatedResource = resourceRepository.save(resource);

@@ -37,7 +37,6 @@ public class TeamController {
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/teams")
     public Team createTeam(@Valid @RequestBody Team team) {
-    	team.fixDate();
         return teamRepository.save(team);
     }
 
@@ -54,7 +53,6 @@ public class TeamController {
         team.setStart(teamDetails.getStart());
         team.setEnd(teamDetails.getEnd());
         team.setProject(teamDetails.getProject());
-        team.fixDate();
         
         final Team updatedTeam = teamRepository.save(team);
         return ResponseEntity.ok(updatedTeam);
