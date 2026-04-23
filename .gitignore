@@ -46,3 +46,8 @@ testem.log
 .DS_Store
 Thumbs.db
 .vscode/launch.json
+
+# local env files
+.env
+.env.*
+!.env.example
