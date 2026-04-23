@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS resources (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    role VARCHAR(64) NOT NULL,
+    start DATETIME NOT NULL,
+    end DATETIME NOT NULL,
+    sudorole VARCHAR(64) NOT NULL,
+    project VARCHAR(64) NOT NULL,
+    status VARCHAR(64) NOT NULL,
+    PRIMARY KEY (id)
+);
