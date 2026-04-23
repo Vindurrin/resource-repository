@@ -2,6 +2,15 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
+## Runtime/tooling compatibility
+
+To stay compatible with Angular CLI 7/8-era tooling, use:
+
+- **Node.js:** 14.x LTS
+- **npm:** 6.x
+
+> Note: if we decide to modernize this frontend stack, we should open a **separate migration PR** to upgrade the Angular toolchain first, then raise the Node.js version in CI.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
