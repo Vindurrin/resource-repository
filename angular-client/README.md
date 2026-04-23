@@ -1,27 +1,40 @@
-# Angular7SpringbootClient
+# React Client
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
+This frontend has been migrated from Angular to React.
 
-## Development server
+## Stack
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- React 18
+- TypeScript
+- Vite
+- Vitest + Testing Library
 
-## Code scaffolding
+## Node/npm support
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Node.js: 20.x LTS
+- npm: 10.x
 
-## Build
+## Development
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```bash
+npm install
+npm start
+```
 
-## Running unit tests
+By default, the app calls `http://localhost:4444/api/v1`. You can override this with:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+VITE_API_BASE_URL=http://localhost:4444/api/v1 npm start
+```
 
-## Running end-to-end tests
+## Scripts
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+- `npm start` - start the Vite dev server
+- `npm run lint` - run ESLint
+- `npm run typecheck` - run TypeScript type checking
+- `npm test` - run unit tests with Vitest
+- `npm run build` - production build
 
-## Further help
+## Migration note
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+If additional modernization is desired, open dedicated follow-up PRs (routing/state/library upgrades) so runtime changes remain isolated from application feature changes.
