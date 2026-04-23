@@ -1,0 +1,12 @@
+# Global ownership
+* @platform-team
+
+# Backend ownership
+/spring-app/ @backend-team @platform-team
+
+# Frontend ownership
+/angular-client/ @frontend-team @platform-team
+
+# CI and repository governance
+/.github/ @platform-team
+/docs/ @platform-team

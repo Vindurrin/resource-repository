@@ -1,0 +1,45 @@
+name: frontend-ci
+
+on:
+  push:
+    paths:
+      - 'angular-client/**'
+      - '.github/workflows/frontend-ci.yml'
+  pull_request:
+    paths:
+      - 'angular-client/**'
+      - '.github/workflows/frontend-ci.yml'
+  workflow_dispatch:
+
+jobs:
+  frontend-pipeline:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: angular-client
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: angular-client/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit tests
+        run: npm test -- --watch=false --browsers=ChromeHeadless --no-progress
+
+      - name: Production build
+        run: npm run build -- --prod
