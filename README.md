@@ -2,6 +2,14 @@
 
 Resource Management System using Java, Spring, Spring Boot, and Angular.
 
+There is the potential to update this application with some of the new innovations in this tech stack. However, this is not something I will be working on going forward. 
+
+## Migration governance
+See `docs/migration-governance.md` for branching, PR sequencing, labels/milestones, and migration board phases.
+
+Automation helpers:
+- `scripts/create-migration-branches.sh`
+- `scripts/setup-migration-governance.sh`
 This is a resource management application that implements CRUD operations and basic search functionality for `Resource` and `Team` model classes.
 
 ## CI/CD and repository governance
